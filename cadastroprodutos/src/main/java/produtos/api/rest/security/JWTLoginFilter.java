@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,8 +34,8 @@ public class JWTLoginFilter extends  AbstractAuthenticationProcessingFilter {
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
 		// TODO Auto-generated method stub
-		
-		Usuario usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
+		ServletInputStream inputStream = request.getInputStream();
+		Usuario usuario =new ObjectMapper().readValue(inputStream,Usuario.class);
 		
 		
 		
